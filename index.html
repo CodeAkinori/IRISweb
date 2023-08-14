@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vídeo de Fundo com Botão</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("img/troll\ face.png");
+    background-size: 90%;
+    background-position: center;
+  }
+
+  #video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  #redirect-button {
+  display: none;
+  position: absolute;
+  top: 70%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  background-color: #2e2e2e; /* Azul claro */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 42px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#redirect-button:hover {
+  background-color: #393939; /* Azul mais escuro ao passar o mouse */
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+  #play-button {
+    display: block;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #play-button.hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+  <video id="video-background" autoplay>
+    <source src="img/IRIS.mp4" type="video/mp4">
+    Desculpe, seu navegador não suporta vídeos HTML5.
+  </video>
+
+  <button id="redirect-button" onclick="redirectToPage()">Bem vindo xD</button>
+  <button id="play-button" onclick="playVideo()">Clique para Reproduzir</button>
+
+  <script>
+    const video = document.getElementById("video-background");
+    const button = document.getElementById("redirect-button");
+    const pbutton = document.getElementById("play-button");
+
+    video.addEventListener("ended", function() {
+      video.style.display = "none";
+      button.style.display = "block";
+      pbutton.classList.remove("hidden");
+    });
+
+    video.addEventListener("play", function() {
+      pbutton.remove(); // Remove o botão de reprodução
+    });
+
+    function redirectToPage() {
+      window.location.href = "home.html";
+    }
+
+    function playVideo() {
+      video.play();
+    }
+  </script>
+</body>
+</html>
